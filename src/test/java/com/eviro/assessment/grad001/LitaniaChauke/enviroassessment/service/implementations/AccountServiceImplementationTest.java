@@ -16,12 +16,14 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest
 class AccountServiceImplementationTest {
     @Autowired
     private AccountProfileService accountServiceImplementation;
-    private List<AccountProfile> testAccounts;
+    private final List<AccountProfile> testAccounts;
+
     @Autowired
     public AccountServiceImplementationTest() {
         this.testAccounts = new ArrayList<>();
@@ -36,6 +38,7 @@ class AccountServiceImplementationTest {
         assertEquals(testAccounts.get(0).getName(), accountProfileDTOS.get(0).name());
         assertEquals(testAccounts.get(1).getName(), accountProfileDTOS.get(1).name());
     }
+
     public MultipartFile convertLocalFileToMultipartFile(String filePath) throws IOException {
         File file = new File(filePath);
         FileInputStream fileInputStream = new FileInputStream(file);

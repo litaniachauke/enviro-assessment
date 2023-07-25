@@ -8,15 +8,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.nio.file.FileSystem;
-
+/**
+ * The type Image controller.
+ */
 @RestController
 @RequestMapping("/v1/api/image")
 public class ImageController {
     @Autowired
     private ImageServices imageServices;
+
+    /**
+     * Gets http image link.
+     *
+     * @param name    the name
+     * @param surname the surname
+     * @return the http image link
+     */
     @GetMapping(value = "/{name}/{surname}")
-    public  FileSystemResource getHttpImageLink( @PathVariable String name, @PathVariable String surname){
+    public FileSystemResource getHttpImageLink(@PathVariable String name, @PathVariable String surname) {
         return imageServices.getImageLink(name, surname);
     }
 }

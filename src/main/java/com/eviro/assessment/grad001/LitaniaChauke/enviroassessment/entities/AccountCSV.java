@@ -2,6 +2,9 @@ package com.eviro.assessment.grad001.LitaniaChauke.enviroassessment.entities;
 
 import lombok.*;
 
+/**
+ * The type Account csv.
+ */
 @Data
 @Setter
 @AllArgsConstructor

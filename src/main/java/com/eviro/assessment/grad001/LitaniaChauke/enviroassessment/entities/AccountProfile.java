@@ -7,6 +7,9 @@ import lombok.*;
 import java.net.URI;
 import java.util.UUID;
 
+/**
+ * The type Account profile.
+ */
 @Data
 @Entity
 @Table
@@ -20,6 +23,13 @@ public class AccountProfile {
     private String surname;
     private URI httpImageLink;
 
+    /**
+     * Instantiates a new Account profile.
+     *
+     * @param name          the name
+     * @param surname       the surname
+     * @param httpImageLink the http image link
+     */
     public AccountProfile(String name, String surname, URI httpImageLink) {
         this.name = name;
         this.surname = surname;
@@ -27,6 +37,11 @@ public class AccountProfile {
     }
 
 
+    /**
+     * To account profile dto account profile dto.
+     *
+     * @return the account profile dto
+     */
     public AccountProfileDTO toAccountProfileDTO(){
         return new AccountProfileDTO(
                 this.uuid,

@@ -12,14 +12,24 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * The type Account profile controller.
+ */
 @RestController
 @RequestMapping("/v1/api/account/profile")
 public class AccountProfileController {
 
     @Autowired
     private AccountProfileService accountProfileService;
+
+    /**
+     * Add account profiles list.
+     *
+     * @param file the file
+     * @return the list
+     */
     @PostMapping("/add/account")
-    public List<AccountProfileDTO> addAccountProfiles(@RequestParam("file")MultipartFile file){
+    public List<AccountProfileDTO> addAccountProfiles(@RequestParam("file") MultipartFile file) {
         try {
             return accountProfileService.addAccountServicesByCSVFile(file);
         } catch (IOException e) {

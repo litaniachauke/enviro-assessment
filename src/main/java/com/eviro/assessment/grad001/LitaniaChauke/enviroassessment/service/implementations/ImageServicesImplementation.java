@@ -7,11 +7,13 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Service;
 
 import java.net.URI;
+
 @Service
 public class ImageServicesImplementation implements ImageServices {
 
     @Autowired
     private AccountProfileRepository accountProfileRepository;
+
     @Override
     public FileSystemResource getImageLink(String name, String surname) {
         URI imageUri = accountProfileRepository.findByNameAndSurname(name, surname).getHttpImageLink();

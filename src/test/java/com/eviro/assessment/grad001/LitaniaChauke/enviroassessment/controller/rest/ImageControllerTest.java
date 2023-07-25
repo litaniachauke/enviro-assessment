@@ -16,26 +16,26 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 class ImageControllerTest {
 
-    private MockMvc mockMvc;
     @Autowired
     private ImageController imageController;
     @Autowired
     private AccountProfileService accountProfileService;
+
     @Test
     void getHttpImageLink() throws Exception {
-       List<AccountProfileDTO> accountProfileDTOS = accountProfileService.
+        List<AccountProfileDTO> accountProfileDTOS = accountProfileService.
                 addAccountServicesByCSVFile(convertLocalFileToMultipartFile("src/test/Resources/test.csv"));
-        mockMvc = MockMvcBuilders.standaloneSetup(imageController).build();
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(imageController).build();
         mockMvc.perform(MockMvcRequestBuilders.
-                get("/v1/api/image/{name}/{surname}", "Enviro365", "IT Solutions"))
+                        get("/v1/api/image/{name}/{surname}", "Enviro365", "IT Solutions"))
                 .andExpect(status().isOk());
     }
+
     public MultipartFile convertLocalFileToMultipartFile(String filePath) throws IOException {
         File file = new File(filePath);
         FileInputStream fileInputStream = new FileInputStream(file);

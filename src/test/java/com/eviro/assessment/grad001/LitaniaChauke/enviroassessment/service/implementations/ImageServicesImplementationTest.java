@@ -16,7 +16,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class ImageServicesImplementationTest {
 
@@ -24,15 +24,10 @@ class ImageServicesImplementationTest {
     private ImageServices imageServices;
     @Autowired
     private AccountProfileService accountServiceImplementation;
-    private List<AccountProfileDTO> accountProfileDTOS;
-
-    @BeforeEach
-    void setUp() throws IOException {
-    }
 
     @Test
     void getImageLink() throws IOException {
-        accountProfileDTOS = accountServiceImplementation.
+        List<AccountProfileDTO> accountProfileDTOS = accountServiceImplementation.
                 addAccountServicesByCSVFile(convertLocalFileToMultipartFile("src/test/Resources/test.csv"));
         FileSystemResource image = imageServices.getImageLink("Enviro365", "IT Solutions");
         assertEquals(accountProfileDTOS.get(0).httpImageLink().getPath(),image.getURI().getPath());

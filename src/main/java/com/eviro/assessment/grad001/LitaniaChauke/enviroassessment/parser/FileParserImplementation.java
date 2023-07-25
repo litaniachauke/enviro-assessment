@@ -4,21 +4,23 @@ import com.eviro.assessment.grad001.LitaniaChauke.enviroassessment.entities.Acco
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-import com.opencsv.exceptions.CsvValidationException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+
+/**
+ * The type File parser implementation.
+ */
 @Service
-public class FileParserImplementation implements FileParser{
+public class FileParserImplementation implements FileParser {
 
     @Override
-    public List<AccountCSV> parseCSV(MultipartFile csvFile) throws IOException {
+    public List<AccountCSV> parseCSV(MultipartFile csvFile) {
         List<AccountCSV> accountProfiles = new ArrayList<>();
         try (Reader reader = new InputStreamReader(csvFile.getInputStream())) {
             try (CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withFirstRecordAsHeader())) {
@@ -40,8 +42,8 @@ public class FileParserImplementation implements FileParser{
     }
 
     @Override
-    public File convertCSVDataToImage(String base64ImageData, String format) throws IOException {
-        File file = new File("images/image."+format.toLowerCase());
+    public File convertCSVDataToImage(String base64ImageData, String format) {
+        File file = new File("images/image." + format.toLowerCase());
         try (FileOutputStream fos = new FileOutputStream(file)) {
             fos.write(Base64.getDecoder().decode(base64ImageData));
         } catch (IOException e) {
@@ -51,7 +53,7 @@ public class FileParserImplementation implements FileParser{
     }
 
     @Override
-    public URI createImageLink(File fileImage) throws URISyntaxException {
+    public URI createImageLink(File fileImage) {
 
         return fileImage.toURI();
     }
