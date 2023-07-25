@@ -2,18 +2,16 @@ package com.eviro.assessment.grad001.LitaniaChauke.enviroassessment.entities;
 
 import com.eviro.assessment.grad001.LitaniaChauke.enviroassessment.dto.AccountProfileDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.net.URI;
 import java.util.UUID;
 
-@Getter
-@Setter
-@ToString
+@Data
 @Entity
+@Table
+@AllArgsConstructor
+@NoArgsConstructor
 public class AccountProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
